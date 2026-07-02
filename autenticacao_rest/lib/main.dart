@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
             return ProductList(
               auth.token ?? '',
               auth.userId ?? '',
-              previous?.items ?? [],
+              //previous?.items ?? [],
             );
           },
         ),

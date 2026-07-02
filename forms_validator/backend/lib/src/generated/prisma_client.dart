@@ -3,6 +3,7 @@
 
 import 'dart:convert' as convert;
 import 'package:orm/configure.dart';
+import 'package:orm/configure.dart' as configure;
 import 'package:orm/orm.dart' as runtime;
 import 'package:orm/dmmf.dart' as dmmf;
 import 'package:json_annotation/json_annotation.dart' as json_annotation;
@@ -1762,7 +1763,7 @@ final dmmf.Document _dmmf =
 
 /// Prisma query engine executable.
 const String _executable =
-    'd:\Projects\forms\backend\.dart_tool\prisma\query-engine';
+    'd:Projects\forms\backend.dart_toolprismaquery-engine';
 
 /// Prisma schema as string.
 final String _schema =
@@ -1799,7 +1800,7 @@ class PrismaClient {
           datasources?.toOverwrites() ?? const <String, runtime.Datasource>{},
       dmmf: _dmmf,
       schema: _schema,
-      environment: configure.environment,
+      environment: configure.environment.all,
       executable: _executable,
     );
 

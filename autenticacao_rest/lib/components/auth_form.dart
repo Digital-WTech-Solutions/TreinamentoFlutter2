@@ -106,9 +106,9 @@ class _AuthFormState extends State<AuthForm> {
                 decoration: const InputDecoration(labelText: 'E-mail'),
                 keyboardType: TextInputType.emailAddress,
                 onSaved: (email) => _authData['email'] = email ?? '',
-                validator: (_email) {
-                  final email = _email ?? '';
-                  if (email.trim().isEmpty || !email.contains('@')) {
+                validator: (email) {
+                  final emaillocal = email ?? '';
+                  if (emaillocal.trim().isEmpty || !emaillocal.contains('@')) {
                     return 'Informe um e-mail válido.';
                   }
                   return null;
@@ -120,9 +120,9 @@ class _AuthFormState extends State<AuthForm> {
                 obscureText: true,
                 controller: _passwordController,
                 onSaved: (password) => _authData['password'] = password ?? '',
-                validator: (_password) {
-                  final password = _password ?? '';
-                  if (password.isEmpty || password.length < 5) {
+                validator: (password) {
+                  final passwordlocal = password ?? '';
+                  if (passwordlocal.isEmpty || passwordlocal.length < 5) {
                     return 'Informe uma senha válida';
                   }
                   return null;
@@ -136,9 +136,9 @@ class _AuthFormState extends State<AuthForm> {
                   obscureText: true,
                   validator: _isLogin()
                       ? null
-                      : (_password) {
-                          final password = _password ?? '';
-                          if (password != _passwordController.text) {
+                      : (password) {
+                          final passwordlocal = password ?? '';
+                          if (passwordlocal != _passwordController.text) {
                             return 'Senhas informadas não conferem.';
                           }
                           return null;

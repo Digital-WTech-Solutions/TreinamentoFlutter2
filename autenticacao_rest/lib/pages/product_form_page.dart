@@ -82,11 +82,10 @@ class _ProductFormPageState extends State<ProductFormPage> {
     setState(() => _isLoading = true);
 
     try {
-      await Provider.of<ProductList>(
+      Provider.of<ProductList>(
         context,
         listen: false,
       ).saveProduct(_formData);
-
       Navigator.of(context).pop();
     } catch (error) {
       await showDialog<void>(
@@ -137,12 +136,12 @@ class _ProductFormPageState extends State<ProductFormPage> {
                         FocusScope.of(context).requestFocus(_priceFocus);
                       },
                       onSaved: (name) => _formData['name'] = name ?? '',
-                      validator: (_name) {
-                        final name = _name ?? '';
-                        if (name.trim().isEmpty) {
+                      validator: (name) {
+                        final localname = name ?? '';
+                        if (localname.trim().isEmpty) {
                           return 'Nome é obrigatório.';
                         }
-                        if (name.trim().length < 3) {
+                        if (localname.trim().length < 3) {
                           return 'Nome precisa no mínimo de 3 letras.';
                         }
                         return null;
@@ -162,11 +161,11 @@ class _ProductFormPageState extends State<ProductFormPage> {
                       },
                       onSaved: (price) =>
                           _formData['price'] = double.parse(price ?? '0'),
-                      validator: (_price) {
-                        final priceString = _price ?? '';
-                        final price = double.tryParse(priceString) ?? -1;
+                      validator: (price) {
+                        final priceString = price ?? '';
+                        final pricefinal = double.tryParse(priceString) ?? -1;
 
-                        if (price <= 0) {
+                        if (pricefinal <= 0) {
                           return 'Informe um preço válido.';
                         }
 
@@ -181,14 +180,14 @@ class _ProductFormPageState extends State<ProductFormPage> {
                       maxLines: 3,
                       onSaved: (description) =>
                           _formData['description'] = description ?? '',
-                      validator: (_description) {
-                        final description = _description ?? '';
+                      validator: (description) {
+                        final localdescription = description ?? '';
 
-                        if (description.trim().isEmpty) {
+                        if (localdescription.trim().isEmpty) {
                           return 'Descrição é obrigatória.';
                         }
 
-                        if (description.trim().length < 10) {
+                        if (localdescription.trim().length < 10) {
                           return 'Descrição precisa no mínimo de 10 letras.';
                         }
 
@@ -209,10 +208,10 @@ class _ProductFormPageState extends State<ProductFormPage> {
                             onFieldSubmitted: (_) => _submitForm(),
                             onSaved: (imageUrl) =>
                                 _formData['imageUrl'] = imageUrl ?? '',
-                            validator: (_imageUrl) {
-                              final imageUrl = _imageUrl ?? '';
+                            validator: (imageUrl) {
+                              final localimageUrl = imageUrl ?? '';
 
-                              if (!isValidImageUrl(imageUrl)) {
+                              if (!isValidImageUrl(localimageUrl)) {
                                 return 'Informe uma Url válida!';
                               }
 

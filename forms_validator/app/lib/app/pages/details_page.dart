@@ -121,7 +121,7 @@ class _DetailsPageState extends State<DetailsPage> {
               // ),
               const SizedBox(height: 8),
               DropdownButtonFormField<Estado>(
-                value: client.state.toString().isEmpty
+                initialValue: client.state.toString().isEmpty
                     ? null
                     : Estado.withName(client.state.toString()),
                 validator: (s) => client.state.validator(),
@@ -146,7 +146,7 @@ class _DetailsPageState extends State<DetailsPage> {
               const SizedBox(height: 8),
               if (client.state.isValid())
                 DropdownButtonFormField<String>(
-                  value: client.city.toString().isEmpty
+                  initialValue: client.city.toString().isEmpty
                       ? null
                       : client.city.toString(),
                   validator: (s) => client.city.validator(),
